@@ -48,7 +48,7 @@ print(a)
 
 如果没有，请放心，我已经给你准备好了，请阅读 [这里](ref/量子计算与编程入门.pdf)
 
-ps: 文件过大无法上传Github，网页版 https://quantum-book-by-originq.readthedocs.io/en/latest/
+ps: 如果点击上方无法打开，则是因为文件过大无法上传Github，可查看网页版 https://quantum-book-by-originq.readthedocs.io/en/latest/
 
 ----
 
@@ -84,6 +84,8 @@ MNIST官方地址为：http://yann.lecun.com/exdb/mnist/
 ![qvc](./other/qvc_circuit.jpg)
 
 量子线路搭建的细节请看 [这里](./src/model/README.md)
+
+ps: Github网页可能无法显示图片，应为DNS污染，将整个项目下载到本地打开即可
 
 ----
 
