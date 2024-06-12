@@ -85,7 +85,7 @@ MNIST官方地址为：http://yann.lecun.com/exdb/mnist/
 
 量子线路搭建的细节请看 [这里](./src/model/README.md)
 
-ps: Github网页可能无法显示图片，应为DNS污染，将整个项目下载到本地打开即可
+ps: Github网页可能无法显示图片，因为DNS污染，将整个项目下载到本地打开即可
 
 ----
 

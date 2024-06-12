@@ -14,7 +14,7 @@
 
 ![qcl_circuit](../../other/qvc_circuit.jpg)
 
-ps: Github网页可能无法显示图片，应为DNS污染，将整个项目下载到本地打开即可
+ps: Github网页可能无法显示图片，因为DNS污染，将整个项目下载到本地打开即可
 
 ----
 
