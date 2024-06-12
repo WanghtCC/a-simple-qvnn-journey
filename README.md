@@ -48,6 +48,8 @@ print(a)
 
 如果没有，请放心，我已经给你准备好了，请阅读 [这里](ref/量子计算与编程入门.pdf)
 
+ps: 文件过大无法上传Github，网页版 https://quantum-book-by-originq.readthedocs.io/en/latest/
+
 ----
 
 - #### 数据预处理
