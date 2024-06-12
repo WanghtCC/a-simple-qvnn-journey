@@ -1,0 +1,5 @@
+train image-label pair: 1000
+test image-label pair: 100
+epoch # train_loss ### train_accuracy # test_loss ### eval_accuracy
+1 |  0.25355145931243894 |  0.4950 |  0.24971391364932061 |  0.5300
+2 |  0.25354553610086439 |  0.4950 |  0.24971147701144220 |  0.5300
