@@ -2,16 +2,20 @@ from pyqpanda import *
 from pyvqnet.optim.adam import Adam
 from pyvqnet.nn.loss import CategoricalCrossEntropy
 from pyvqnet.data.data import data_generator
+import pyvqnet
 import datetime
 import numpy as np
 import cv2
 from model.model import Model
+
+from pyvqnet import DEV_GPU_0
 
 from dataloader.mnist import *
 from utils import create_result_file
 
 qvc_block = 2   # number of qvc block, >= 1
 single_line_weight = 6  # number of qcl weights, >= 3
+is_gpu = False
 
 def label_preprocessing(dataset, digits):
     dataset = np.where(dataset == 3, 0, dataset)
@@ -22,12 +26,12 @@ def label_preprocessing(dataset, digits):
 def run():
     batch_size = 20
     epoch = 10
-    image_size = 4
+    image_size = 5
     digits = [3,6]
-    train_data_size = -1    # -1 means all
+    train_data_size = 500    # -1 means all
     test_data_size = -1     # -1 means all
 
-    x_train, y_train = load_mnist_resize('training_data', digits=digits)
+    x_train, y_train = load_mnist_resize('training_data', digits=digits, img_col=image_size, img_row=image_size)
     x_test, y_test = load_mnist_resize('testing_data', digits=digits, img_col=image_size, img_row=image_size)
     print('MNIST dataset load successful')
     print('-------------------------------------------------------')
@@ -61,8 +65,12 @@ def run():
     model = Model(image_size, 1)
     optimizer = Adam(model.parameters(), lr = 0.003)
     loss = CategoricalCrossEntropy()
+
+    if is_gpu:
+        model.toGPU(DEV_GPU_0)
     model.train()
 
+    save_acc = float('-inf')
     start_time = time.time()
     for i in range(epoch):
         epoch_start_time = time.time()
@@ -72,6 +80,8 @@ def run():
         for x, y in data_generator(x_train, y_train, batch_size, shuffle=True):
             iter_time = time.time()
             x = x.reshape(batch_size, -1)
+            if is_gpu:
+                x.GPU(DEV_GPU_0)
             optimizer.zero_grad()
             result = model(x)
             loss_b = loss(y, result)
@@ -117,6 +127,11 @@ def run():
         elapsed = round(time.time() - epoch_start_time)
         elapsed = str(datetime.timedelta(seconds=elapsed))
         print("Val Finished. Total elapsed time (h:m:s): {}".format(elapsed))
+
+        if accuary / count > save_acc:
+            pyvqnet.utils.storage.save_parameters(model.state_dict(), 'best_model.model')
+            save_acc = accuary / count
+            print(f'==> Saving best_model successful, accuary: {accuary / count: 01.2f}')
 
         result_file.flush()
 
