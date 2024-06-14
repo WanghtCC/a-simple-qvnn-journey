@@ -6,7 +6,7 @@
 
 那么，我们开始：
 
-----
+---
 
 - #### 环境配置
 
@@ -14,7 +14,7 @@
 
 | Software | version          |
 | :------: | ---------------- |
-|   GCC    | >= 5.4.0         |
+|   GCC   | >= 5.4.0         |
 |  Python  | >= 3.8 && <=3.11 |
 
 ##### pyqpanda：
@@ -40,7 +40,7 @@ a = arange(1,25).reshape([2, 3, 4])
 print(a)
 ```
 
-----
+---
 
 - #### 基础理论部分
 
@@ -50,7 +50,7 @@ print(a)
 
 ps: 如果点击上方无法打开，则是因为文件过大无法上传Github，可查看网页版 https://quantum-book-by-originq.readthedocs.io/en/latest/
 
-----
+---
 
 - #### 数据预处理
 
@@ -60,18 +60,18 @@ MNIST数据集是一个大型手写数字数据库，包含60000张训练图像�
 
 MNIST官方地址为：http://yann.lecun.com/exdb/mnist/
 
-|     数据集     |         MNIST文件          |                          下载地址                           |  文件大小   |
+|     数据集     |         MNIST文件         |                          下载地址                          |  文件大小  |
 | :------------: | :------------------------: | :---------------------------------------------------------: | :---------: |
 | Training image | train-images-idx3-ubyte.gz | http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz | 9912422字节 |
 | Training label | train-labels-idx1-ubyte.gz | http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz |  28881字节  |
-| Testing image  | t10k-images-idx3-ubyte.gz  | http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz  | 1648877字节 |
-| Testing label  | t10k-labels-idx1-ubyte.gz  | http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz  |  4542字节   |
+| Testing image | t10k-images-idx3-ubyte.gz | http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz | 1648877字节 |
+| Testing label | t10k-labels-idx1-ubyte.gz | http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz |  4542字节  |
 
 不过并不建议使用url下载或去官方地址下载，懂得都懂...
 
 数据预处理的细节请看 [这里](./src/dataloader/README.md)
 
-----
+---
 
 - #### 量子变分线路搭建
 
@@ -87,21 +87,27 @@ MNIST官方地址为：http://yann.lecun.com/exdb/mnist/
 
 ps: Github网页可能无法显示图片，因为DNS污染，将整个项目下载到本地打开即可
 
-----
+---
 
 - #### 模型训练
 
 在我们的案例中只是一个简单的体验，因此并没有提供命令行参数列表
 
-training：
+train：
 
 ```shell
 python src/train.py
 ```
 
+eval
+
+```shell
+python src/eval.py
+```
+
 模型训练的细节请看 [这里](./src/README.md)
 
-----
+---
 
 - #### 结果
 
@@ -118,4 +124,3 @@ python src/train.py
 # 像素编码	 16量子比特	 4*4			 192(12)		11.08s			 --
 # 像素编码	 25量子比特	 5*5			 150(6)			--s				 	 --
 ```
-
